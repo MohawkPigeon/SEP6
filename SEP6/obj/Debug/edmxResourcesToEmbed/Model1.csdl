@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SEP6_2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="movies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="people">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="birth" Type="Int32" />
+  </EntityType>
+  <EntityType Name="directors">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="movie_id" Type="Int32" Nullable="false" />
+    <Property Name="person_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ratings">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="rating" />
+      <PropertyRef Name="votes" />
+    </Key>
+    <Property Name="movie_id" Type="Int32" Nullable="false" />
+    <Property Name="rating" Type="Double" Nullable="false" />
+    <Property Name="votes" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stars">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="movie_id" Type="Int32" Nullable="false" />
+    <Property Name="person_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="SEP6_2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="movies" EntityType="Self.movies" />
+    <EntitySet Name="people" EntityType="Self.people" />
+    <EntitySet Name="directors" EntityType="Self.directors" />
+    <EntitySet Name="ratings" EntityType="Self.ratings" />
+    <EntitySet Name="stars" EntityType="Self.stars" />
+  </EntityContainer>
+</Schema>

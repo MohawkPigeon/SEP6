@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SEP6_2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SEP6_2.dbo.directors' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="directors">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="movies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar(max)" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="people">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" Nullable="false" />
+    <Property Name="birth" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SEP6_2.dbo.ratings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ratings">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="rating" />
+      <PropertyRef Name="votes" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="rating" Type="float" Nullable="false" />
+    <Property Name="votes" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SEP6_2.dbo.stars' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="stars">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="SEP6_2ModelStoreContainer">
+    <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="directors" EntityType="Self.directors" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [directors].[movie_id] AS [movie_id], 
+    [directors].[person_id] AS [person_id]
+    FROM [dbo].[directors] AS [directors]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ratings" EntityType="Self.ratings" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ratings].[movie_id] AS [movie_id], 
+    [ratings].[rating] AS [rating], 
+    [ratings].[votes] AS [votes]
+    FROM [dbo].[ratings] AS [ratings]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="stars" EntityType="Self.stars" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [stars].[movie_id] AS [movie_id], 
+    [stars].[person_id] AS [person_id]
+    FROM [dbo].[stars] AS [stars]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
