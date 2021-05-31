@@ -48,9 +48,17 @@ warning 6002: The table/view 'SEP6_2.dbo.stars' does not have a primary key defi
     <Property Name="movie_id" Type="int" Nullable="false" />
     <Property Name="person_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="SEP6_2ModelStoreContainer">
     <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="directors" EntityType="Self.directors" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [directors].[movie_id] AS [movie_id], 

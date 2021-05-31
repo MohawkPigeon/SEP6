@@ -23,7 +23,7 @@ namespace SEP6.Controllers
         // GET: movies/Search?term=Dune
         public ActionResult Search(string term)
         {
-            return View(db.movies.Where(m => m.title.Contains(term)).ToList());
+            return View(db.movies.Where(m => m.title.ToLower().Contains(term.ToLower())).ToList());
         }
 
         // GET: movies/Details/5

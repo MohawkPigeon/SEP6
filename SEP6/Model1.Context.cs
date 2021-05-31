@@ -30,5 +30,6 @@ namespace SEP6
         public virtual DbSet<directors> directors { get; set; }
         public virtual DbSet<ratings> ratings { get; set; }
         public virtual DbSet<stars> stars { get; set; }
+        public virtual DbSet<users> users { get; set; }
     }
 }

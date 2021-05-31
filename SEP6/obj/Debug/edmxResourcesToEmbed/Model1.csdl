@@ -48,5 +48,13 @@
     <EntitySet Name="directors" EntityType="Self.directors" />
     <EntitySet Name="ratings" EntityType="Self.ratings" />
     <EntitySet Name="stars" EntityType="Self.stars" />
+    <EntitySet Name="users" EntityType="SEP6_2Model.users" />
   </EntityContainer>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
