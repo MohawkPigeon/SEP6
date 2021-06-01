@@ -25,10 +25,10 @@ namespace SEP6Film
         public string title { get; set; }
         public int year { get; set; }
     
-        public virtual ratings ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<people> directors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<people> stars { get; set; }
+        public virtual ratings ratings { get; set; }
     }
 }

@@ -178,60 +178,44 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="AspNetRoles.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserClaims.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserLogins.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUsers.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\moviesController.cs" />
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FilmDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FilmDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FilmDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FilmDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FilmDataModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\movies1Controller.cs" />
+    <Compile Include="Controllers\peopleController.cs" />
+    <Compile Include="Controllers\ratingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="movies.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="people.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ratings.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="users.cs">
-      <DependentUpon>FilmDataModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -239,31 +223,31 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="FilmDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FilmDataModel.edmx</DependentUpon>
-      <LastGenOutput>FilmDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="FilmDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FilmDataModel.edmx</DependentUpon>
-      <LastGenOutput>FilmDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
-    <EntityDeploy Include="FilmDataModel.edmx">
+    <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FilmDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="FilmDataModel.edmx.diagram">
-      <DependentUpon>FilmDataModel.edmx</DependentUpon>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -310,15 +294,25 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\movies\Create.cshtml" />
-    <Content Include="Views\movies\Delete.cshtml" />
-    <Content Include="Views\movies\Details.cshtml" />
-    <Content Include="Views\movies\Edit.cshtml" />
-    <Content Include="Views\movies\Index.cshtml" />
-    <Content Include="Views\movies\Search.cshtml" />
+    <Content Include="Views\ratings\Create.cshtml" />
+    <Content Include="Views\ratings\Delete.cshtml" />
+    <Content Include="Views\ratings\Details.cshtml" />
+    <Content Include="Views\ratings\Edit.cshtml" />
+    <Content Include="Views\ratings\Index.cshtml" />
+    <Content Include="Views\movies1\Create.cshtml" />
+    <Content Include="Views\movies1\Delete.cshtml" />
+    <Content Include="Views\movies1\Details.cshtml" />
+    <Content Include="Views\movies1\Edit.cshtml" />
+    <Content Include="Views\movies1\Index.cshtml" />
+    <Content Include="Views\people\Create.cshtml" />
+    <Content Include="Views\people\Delete.cshtml" />
+    <Content Include="Views\people\Details.cshtml" />
+    <Content Include="Views\people\Edit.cshtml" />
+    <Content Include="Views\people\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

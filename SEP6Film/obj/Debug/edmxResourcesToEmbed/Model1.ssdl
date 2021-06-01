@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sep6_3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="directors">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="movies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar(max)" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="people">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" Nullable="false" />
+    <Property Name="birth" Type="int" />
+  </EntityType>
+  <EntityType Name="ratings">
+    <Key>
+      <PropertyRef Name="movie_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="rating" Type="float" Nullable="false" />
+    <Property Name="votes" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stars">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="person_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="sep6_3ModelStoreContainer">
+    <EntitySet Name="directors" EntityType="Self.directors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ratings" EntityType="Self.ratings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="stars" EntityType="Self.stars" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

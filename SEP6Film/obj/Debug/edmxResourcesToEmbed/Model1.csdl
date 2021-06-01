@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sep6_3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="movies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="directors" Relationship="sep6_3Model.peoplemovies" FromRole="movies" ToRole="people" />
+    <NavigationProperty Name="stars" Relationship="sep6_3Model.peoplemovies1" FromRole="movies" ToRole="people" />
+    <NavigationProperty Name="ratings" Relationship="sep6_3Model.ratingsmovies" FromRole="movies" ToRole="ratings" />
+  </EntityType>
+  <EntityType Name="people">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="birth" Type="Int32" />
+    <NavigationProperty Name="directors" Relationship="sep6_3Model.peoplemovies" FromRole="people" ToRole="movies" />
+    <NavigationProperty Name="stars" Relationship="sep6_3Model.peoplemovies1" FromRole="people" ToRole="movies" />
+  </EntityType>
+  <EntityType Name="ratings">
+    <Key>
+      <PropertyRef Name="movie_id" />
+    </Key>
+    <Property Name="movie_id" Type="Int32" Nullable="false" />
+    <Property Name="rating" Type="Double" Nullable="false" />
+    <Property Name="votes" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="movies" Relationship="sep6_3Model.ratingsmovies" FromRole="ratings" ToRole="movies" />
+  </EntityType>
+  <EntityContainer Name="sep6_3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="movies" EntityType="Self.movies" />
+    <EntitySet Name="people" EntityType="Self.people" />
+    <EntitySet Name="ratings" EntityType="Self.ratings" />
+    <AssociationSet Name="peoplemovies" Association="sep6_3Model.peoplemovies">
+      <End Role="people" EntitySet="people" />
+      <End Role="movies" EntitySet="movies" />
+    </AssociationSet>
+    <AssociationSet Name="peoplemovies1" Association="sep6_3Model.peoplemovies1">
+      <End Role="people" EntitySet="people" />
+      <End Role="movies" EntitySet="movies" />
+    </AssociationSet>
+    <AssociationSet Name="ratingsmovies" Association="sep6_3Model.ratingsmovies">
+      <End Role="ratings" EntitySet="ratings" />
+      <End Role="movies" EntitySet="movies" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="peoplemovies">
+    <End Type="sep6_3Model.people" Role="people" Multiplicity="*" />
+    <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
+  </Association>
+  <Association Name="peoplemovies1">
+    <End Type="sep6_3Model.people" Role="people" Multiplicity="*" />
+    <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
+  </Association>
+  <Association Name="ratingsmovies">
+    <End Type="sep6_3Model.ratings" Role="ratings" Multiplicity="0..1" />
+    <End Type="sep6_3Model.movies" Role="movies" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="movies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ratings">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

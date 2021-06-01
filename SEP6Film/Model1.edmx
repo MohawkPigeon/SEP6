@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sep6_3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="directors">
+          <Key>
+            <PropertyRef Name="movie_id" />
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="movie_id" Type="int" Nullable="false" />
+          <Property Name="person_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="movies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar(max)" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="people">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" Nullable="false" />
+          <Property Name="birth" Type="int" />
+        </EntityType>
+        <EntityType Name="ratings">
+          <Key>
+            <PropertyRef Name="movie_id" />
+          </Key>
+          <Property Name="movie_id" Type="int" Nullable="false" />
+          <Property Name="rating" Type="float" Nullable="false" />
+          <Property Name="votes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stars">
+          <Key>
+            <PropertyRef Name="movie_id" />
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="movie_id" Type="int" Nullable="false" />
+          <Property Name="person_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="sep6_3ModelStoreContainer">
+          <EntitySet Name="directors" EntityType="Self.directors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ratings" EntityType="Self.ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stars" EntityType="Self.stars" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sep6_3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="movies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="directors" Relationship="sep6_3Model.peoplemovies" FromRole="movies" ToRole="people" />
+          <NavigationProperty Name="stars" Relationship="sep6_3Model.peoplemovies1" FromRole="movies" ToRole="people" />
+          <NavigationProperty Name="ratings" Relationship="sep6_3Model.ratingsmovies" FromRole="movies" ToRole="ratings" />
+        </EntityType>
+        <EntityType Name="people">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birth" Type="Int32" />
+          <NavigationProperty Name="directors" Relationship="sep6_3Model.peoplemovies" FromRole="people" ToRole="movies" />
+          <NavigationProperty Name="stars" Relationship="sep6_3Model.peoplemovies1" FromRole="people" ToRole="movies" />
+        </EntityType>
+        <EntityType Name="ratings">
+          <Key>
+            <PropertyRef Name="movie_id" />
+          </Key>
+          <Property Name="movie_id" Type="Int32" Nullable="false" />
+          <Property Name="rating" Type="Double" Nullable="false" />
+          <Property Name="votes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="movies" Relationship="sep6_3Model.ratingsmovies" FromRole="ratings" ToRole="movies" />
+        </EntityType>
+        <EntityContainer Name="sep6_3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="movies" EntityType="Self.movies" />
+          <EntitySet Name="people" EntityType="Self.people" />
+          <EntitySet Name="ratings" EntityType="Self.ratings" />
+          <AssociationSet Name="peoplemovies" Association="sep6_3Model.peoplemovies">
+            <End Role="people" EntitySet="people" />
+            <End Role="movies" EntitySet="movies" />
+          </AssociationSet>
+          <AssociationSet Name="peoplemovies1" Association="sep6_3Model.peoplemovies1">
+            <End Role="people" EntitySet="people" />
+            <End Role="movies" EntitySet="movies" />
+          </AssociationSet>
+          <AssociationSet Name="ratingsmovies" Association="sep6_3Model.ratingsmovies">
+            <End Role="ratings" EntitySet="ratings" />
+            <End Role="movies" EntitySet="movies" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="peoplemovies">
+          <End Type="sep6_3Model.people" Role="people" Multiplicity="*" />
+          <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
+        </Association>
+        <Association Name="peoplemovies1">
+          <End Type="sep6_3Model.people" Role="people" Multiplicity="*" />
+          <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
+        </Association>
+        <Association Name="ratingsmovies">
+          <End Type="sep6_3Model.ratings" Role="ratings" Multiplicity="0..1" />
+          <End Type="sep6_3Model.movies" Role="movies" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ratings">
+              <PropertyRef Name="movie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sep6_3ModelStoreContainer" CdmEntityContainer="sep6_3Entities">
+          <EntitySetMapping Name="movies">
+            <EntityTypeMapping TypeName="sep6_3Model.movies">
+              <MappingFragment StoreEntitySet="movies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="people">
+            <EntityTypeMapping TypeName="sep6_3Model.people">
+              <MappingFragment StoreEntitySet="people">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="birth" ColumnName="birth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ratings">
+            <EntityTypeMapping TypeName="sep6_3Model.ratings">
+              <MappingFragment StoreEntitySet="ratings">
+                <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="votes" ColumnName="votes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="peoplemovies" TypeName="sep6_3Model.peoplemovies" StoreEntitySet="directors" >
+            <EndProperty Name="movies">
+              <ScalarProperty Name="id" ColumnName="movie_id" />
+            </EndProperty>
+            <EndProperty Name="people">
+              <ScalarProperty Name="id" ColumnName="person_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="peoplemovies1" TypeName="sep6_3Model.peoplemovies1" StoreEntitySet="stars" >
+            <EndProperty Name="movies">
+              <ScalarProperty Name="id" ColumnName="movie_id" />
+            </EndProperty>
+            <EndProperty Name="people">
+              <ScalarProperty Name="id" ColumnName="person_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

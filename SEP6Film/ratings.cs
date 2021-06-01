@@ -19,7 +19,7 @@ namespace SEP6Film
         public int movie_id { get; set; }
         public double rating { get; set; }
         public int votes { get; set; }
-        [Required]
+    
         public virtual movies movies { get; set; }
     }
 }
