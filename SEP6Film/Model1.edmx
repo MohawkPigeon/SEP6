@@ -112,7 +112,7 @@
           <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
         </Association>
         <Association Name="ratingsmovies">
-          <End Type="sep6_3Model.ratings" Role="ratings" Multiplicity="0..1" />
+          <End Type="sep6_3Model.ratings" Role="ratings" Multiplicity="1" />
           <End Type="sep6_3Model.movies" Role="movies" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="movies">

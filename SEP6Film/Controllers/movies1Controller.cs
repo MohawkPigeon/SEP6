@@ -18,8 +18,7 @@ namespace SEP6Film.Controllers
         // GET: movies1
         public async Task<ActionResult> Index()
         {
-            var movies = db.movies.Include(m => m.ratings);
-            return View(await movies.ToListAsync());
+            return View(await db.movies.ToListAsync());
         }
 
         // GET: movies1/Details/5
@@ -40,7 +39,6 @@ namespace SEP6Film.Controllers
         // GET: movies1/Create
         public ActionResult Create()
         {
-            ViewBag.id = new SelectList(db.ratings, "movie_id", "movie_id");
             return View();
         }
 
@@ -58,7 +56,6 @@ namespace SEP6Film.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id = new SelectList(db.ratings, "movie_id", "movie_id", movies.id);
             return View(movies);
         }
 
@@ -74,7 +71,6 @@ namespace SEP6Film.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id = new SelectList(db.ratings, "movie_id", "movie_id", movies.id);
             return View(movies);
         }
 
@@ -91,7 +87,6 @@ namespace SEP6Film.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.id = new SelectList(db.ratings, "movie_id", "movie_id", movies.id);
             return View(movies);
         }
 

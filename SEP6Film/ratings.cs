@@ -11,11 +11,9 @@ namespace SEP6Film
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ratings
     {
-        [Key]
         public int movie_id { get; set; }
         public double rating { get; set; }
         public int votes { get; set; }
