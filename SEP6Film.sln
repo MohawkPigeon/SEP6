@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEP6Film", "SEP6Film\SEP6Film.csproj", "{044E3698-8C94-4D1F-A8B4-99D60E4E5B9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{044E3698-8C94-4D1F-A8B4-99D60E4E5B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{044E3698-8C94-4D1F-A8B4-99D60E4E5B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{044E3698-8C94-4D1F-A8B4-99D60E4E5B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{044E3698-8C94-4D1F-A8B4-99D60E4E5B9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6BAFA01-8F99-41F6-AB55-35A2246A9FAF}
+	EndGlobalSection
+EndGlobal
