@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=tcp:film-gruppe.database.windows.net,1433;Initial Catalog=sep6_3;User Id=sebastian@film-gruppe;Password=Brandt132" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\oscar\\Documents\\GitHub\\SEP6\\SEP6Film\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="sep6_3Entities-Web.config Connection String" description="sep6_3Entities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=film-gruppe.database.windows.net;initial catalog=sep6_3;persist security info=True;user id=sebastian;password=Brandt132;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\oscar\\Documents\\GitHub\\SEP6\\SEP6Film\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='sep6_3Entities']/@connectionString" />
+  </parameter>
+  <parameter name="sep6_3connection-Web.config Connection String" description="sep6_3connection Connection String used in web.config by the application to access the database." defaultValue="Data Source=tcp:film-gruppe.database.windows.net,1433;Initial Catalog=sep6_3;User Id=sebastian@film-gruppe;Password=Brandt132" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\oscar\\Documents\\GitHub\\SEP6\\SEP6Film\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='sep6_3connection']/@connectionString" />
+  </parameter>
+</parameters>

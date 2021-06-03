@@ -8,6 +8,14 @@
     <Property Name="movie_id" Type="int" Nullable="false" />
     <Property Name="person_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="movie">
+    <Key>
+      <PropertyRef Name="movie_id" />
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="movies">
     <Key>
       <PropertyRef Name="id" />
@@ -40,11 +48,101 @@
     <Property Name="movie_id" Type="int" Nullable="false" />
     <Property Name="person_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar(max)" Nullable="false" />
+    <Property Name="password" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_directors_ToMovies">
+    <End Role="movies" Type="Self.movies" Multiplicity="1" />
+    <End Role="directors" Type="Self.directors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="directors">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_directors_ToPeople">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="directors" Type="Self.directors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="directors">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ratings_ToMovies">
+    <End Role="movies" Type="Self.movies" Multiplicity="1" />
+    <End Role="ratings" Type="Self.ratings" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="movies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ratings">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_stars_ToMovies">
+    <End Role="movies" Type="Self.movies" Multiplicity="1" />
+    <End Role="stars" Type="Self.stars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="stars">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_stars_ToPeople">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="stars" Type="Self.stars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="stars">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="sep6_3ModelStoreContainer">
     <EntitySet Name="directors" EntityType="Self.directors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="movie" EntityType="Self.movie" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ratings" EntityType="Self.ratings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="stars" EntityType="Self.stars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_directors_ToMovies" Association="Self.FK_directors_ToMovies">
+      <End Role="movies" EntitySet="movies" />
+      <End Role="directors" EntitySet="directors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_directors_ToPeople" Association="Self.FK_directors_ToPeople">
+      <End Role="people" EntitySet="people" />
+      <End Role="directors" EntitySet="directors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ratings_ToMovies" Association="Self.FK_ratings_ToMovies">
+      <End Role="movies" EntitySet="movies" />
+      <End Role="ratings" EntitySet="ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_stars_ToMovies" Association="Self.FK_stars_ToMovies">
+      <End Role="movies" EntitySet="movies" />
+      <End Role="stars" EntitySet="stars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_stars_ToPeople" Association="Self.FK_stars_ToPeople">
+      <End Role="people" EntitySet="people" />
+      <End Role="stars" EntitySet="stars" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

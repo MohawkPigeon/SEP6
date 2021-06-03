@@ -10,6 +10,7 @@
     <NavigationProperty Name="directors" Relationship="sep6_3Model.peoplemovies" FromRole="movies" ToRole="people" />
     <NavigationProperty Name="stars" Relationship="sep6_3Model.peoplemovies1" FromRole="movies" ToRole="people" />
     <NavigationProperty Name="ratings" Relationship="sep6_3Model.ratingsmovies" FromRole="movies" ToRole="ratings" />
+    <NavigationProperty Name="user" Relationship="sep6_3Model.usermovies" FromRole="movies" ToRole="user" />
   </EntityType>
   <EntityType Name="people">
     <Key>
@@ -46,6 +47,11 @@
       <End Role="ratings" EntitySet="ratings" />
       <End Role="movies" EntitySet="movies" />
     </AssociationSet>
+    <EntitySet Name="user" EntityType="sep6_3Model.user" />
+    <AssociationSet Name="usermovies" Association="sep6_3Model.usermovies">
+      <End Role="user" EntitySet="user" />
+      <End Role="movies" EntitySet="movies" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="peoplemovies">
     <End Type="sep6_3Model.people" Role="people" Multiplicity="*" />
@@ -66,5 +72,18 @@
         <PropertyRef Name="movie_id" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="movies" Relationship="sep6_3Model.usermovies" FromRole="user" ToRole="movies" />
+  </EntityType>
+  <Association Name="usermovies">
+    <End Type="sep6_3Model.user" Role="user" Multiplicity="*" />
+    <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
   </Association>
 </Schema>

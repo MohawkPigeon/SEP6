@@ -1,0 +1,9 @@
+services:
+  sep6film:
+    build:
+      context: C:\Users\oscar\Documents\GitHub\SEP6\SEP6Film
+      dockerfile: Dockerfile
+    image: sep6film
+    ports:
+    - target: 80
+version: '3.4'

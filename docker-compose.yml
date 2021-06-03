@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  sep6film:
+    image: ${DOCKER_REGISTRY-}sep6film
+    build:
+      context: .\SEP6Film
+      dockerfile: Dockerfile

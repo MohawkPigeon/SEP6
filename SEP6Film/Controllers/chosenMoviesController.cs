@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SEP6Film;
-using SEP6Film.Data;
+
 
 namespace SEP6Film.Controllers
 {

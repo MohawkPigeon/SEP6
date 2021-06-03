@@ -30,30 +30,10 @@ namespace SEP6Film.Controllers
 
                     HttpContext.Response.Cookies["username"].Value = user.id + string.Empty;
 
-                    //return View(db.user.Where(x => x.movies == user.movies).ToList());
-                    //return View(db.movies.Where(x => x.user..ToList());
-
-                    //using (db)
-                    //{
-                    //    var user2 = db.user
-                    //        .Include(u => u.movies)
-                    //        .FirstOrDefaultAsync(p => p.id == 1);
-                    //}
-
-                    //return View(db.user.Include(x => x.movies).Where(x => x.movies == user.movies).ToList());
-                    // var user_ = db.user.Include(x => x.movies);
-
                     return View(user.movies.ToList()); 
-                   // return View(db.movies.Include(x => x.user).Where(x => x.id < 50000).ToList());
+
                 }
         }
-
-        // GET: users
-        //public async Task<ActionResult> Index()
-        //{
-        //    return View(await db.user.ToListAsync());
-        //}
-
 
 
         // GET: users/Details/5
