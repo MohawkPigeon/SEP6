@@ -23,7 +23,7 @@ namespace SEP6Film
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-mint.css",
                       "~/Content/site.css"));
         }
     }
