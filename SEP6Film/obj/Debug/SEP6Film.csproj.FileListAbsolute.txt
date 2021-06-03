@@ -221,3 +221,4 @@ C:\Users\oscar\Documents\GitHub\SEP6\SEP6Film\bin\Microsoft.Owin.Security.Micros
 C:\Users\oscar\Documents\GitHub\SEP6\SEP6Film\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\oscar\Documents\GitHub\SEP6\SEP6Film\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\oscar\Documents\GitHub\SEP6\SEP6Film\obj\Debug\SEP6Film.csproj.CopyComplete
+C:\Users\oscar\Documents\GitHub\SEP6\SEP6Film\obj\Debug\SEP6Film.csprojAssemblyReference.cache

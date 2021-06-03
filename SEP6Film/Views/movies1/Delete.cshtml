@@ -27,6 +27,14 @@
             @Html.DisplayFor(model => model.year)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ratings.movie_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ratings.movie_id)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

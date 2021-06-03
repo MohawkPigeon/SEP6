@@ -19,6 +19,7 @@ namespace SEP6Film.Data
         {
         }
 
-        public System.Data.Entity.DbSet<SEP6Film.movies> movies { get; set; }
+        public System.Data.Entity.DbSet<SEP6Film.movie> movie { get; set; }
+        //public virtual DbSet<movie> movie { get; set; }
     }
 }

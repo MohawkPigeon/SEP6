@@ -4,11 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Movies</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Year: Movies for a year
 </p>
+<p>
+    Rating: Movies above a given rating
+</p>
+<p>
+    Title: Movies with given letters in title
+</p>
+<p>
+    Votes: Movies above a given amount of votes
+</p>
+<p>
+    Star: Movies with given Star
+</p>
+<p>
+    Director: Movies with given Director
+</p>
+
+@using (Html.BeginForm("Index", "movies1", FormMethod.Get))
+{
+    <b> Search Option: </b>
+    @Html.RadioButton("option", "Year") <text>Year</text>
+    @Html.RadioButton("option", "Rating") <text> Rating </text>
+    @Html.RadioButton("option", "Title")<text>Title</text>
+    @Html.RadioButton("option", "Votes")<text>Votes</text>
+    @Html.RadioButton("option", "Star")<text>Star</text>
+    @Html.RadioButton("option", "Director")<text>Director</text>
+    @Html.TextBox("search")
+    <input type="submit"
+           name="submit"
+           value="Search" />
+}
+
 <table class="table">
     <tr>
         <th>
@@ -17,23 +47,59 @@
         <th>
             @Html.DisplayNameFor(model => model.year)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ratings.rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ratings.votes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.directors)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.year)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        var listStars = item.stars.ToList();
+        var listDirectors = item.directors.ToList();
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @if (item.ratings != null)
+                {@Html.DisplayFor(modelItem => item.ratings.rating)}
+            </td>
+            <td>
+                @if (item.ratings != null)
+                {@Html.DisplayFor(modelItem => item.ratings.votes)}
+            </td>
+            <td>
+                @foreach (var starName in listStars)
+                {
+                    <p>@starName.name</p>
+                }
+            </td>
+            <td>
+                @foreach (var directorName in listDirectors)
+                {
+                    <p>@directorName.name</p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("favorite", "Create", "chosenMovies", new { id = item.id }, null) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>

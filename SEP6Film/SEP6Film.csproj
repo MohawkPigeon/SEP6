@@ -179,11 +179,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\addMoviesController.cs" />
+    <Compile Include="Controllers\chosenMoviesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\movies1Controller.cs" />
     <Compile Include="Controllers\peopleController.cs" />
     <Compile Include="Controllers\ratingsController.cs" />
+    <Compile Include="Controllers\usersController.cs" />
+    <Compile Include="Data\SEP6FilmContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +207,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\movie.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="movies.cs">
@@ -216,6 +221,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="user.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -294,6 +302,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\movies1\Create.cshtml" />
+    <Content Include="Views\movies1\Delete.cshtml" />
+    <Content Include="Views\movies1\Details.cshtml" />
+    <Content Include="Views\movies1\Edit.cshtml" />
+    <Content Include="Views\movies1\Index.cshtml" />
     <Content Include="Views\people\Create.cshtml" />
     <Content Include="Views\people\Delete.cshtml" />
     <Content Include="Views\people\Details.cshtml" />
@@ -304,15 +317,20 @@
     <Content Include="Views\ratings\Details.cshtml" />
     <Content Include="Views\ratings\Edit.cshtml" />
     <Content Include="Views\ratings\Index.cshtml" />
-    <Content Include="Views\movies1\Create.cshtml" />
-    <Content Include="Views\movies1\Delete.cshtml" />
-    <Content Include="Views\movies1\Details.cshtml" />
-    <Content Include="Views\movies1\Edit.cshtml" />
-    <Content Include="Views\movies1\Index.cshtml" />
+    <Content Include="Views\users\Create.cshtml" />
+    <Content Include="Views\users\Delete.cshtml" />
+    <Content Include="Views\users\Details.cshtml" />
+    <Content Include="Views\users\Edit.cshtml" />
+    <Content Include="Views\users\Index.cshtml" />
+    <Content Include="Views\chosenMovies\Create.cshtml" />
+    <Content Include="Views\chosenMovies\Delete.cshtml" />
+    <Content Include="Views\chosenMovies\Details.cshtml" />
+    <Content Include="Views\chosenMovies\Edit.cshtml" />
+    <Content Include="Views\chosenMovies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
+    <Folder Include="Views\addMovies\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

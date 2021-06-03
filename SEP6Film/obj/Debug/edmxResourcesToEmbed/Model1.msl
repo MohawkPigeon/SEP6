@@ -44,5 +44,22 @@
         <ScalarProperty Name="id" ColumnName="person_id" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="sep6_3Model.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="usermovies" TypeName="sep6_3Model.usermovies" StoreEntitySet="movie">
+      <EndProperty Name="movies">
+        <ScalarProperty Name="id" ColumnName="movie_id" />
+      </EndProperty>
+      <EndProperty Name="user">
+        <ScalarProperty Name="id" ColumnName="user_id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

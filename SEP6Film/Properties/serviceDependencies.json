@@ -3,13 +3,13 @@
     "secrets1": {
       "type": "secrets"
     },
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:SEP6"
-    },
     "mssql2": {
       "type": "mssql",
       "connectionId": "sep6_3connection"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "connection2"
     }
   }
 }

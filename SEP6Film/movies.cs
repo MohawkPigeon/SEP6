@@ -19,6 +19,7 @@ namespace SEP6Film
         {
             this.directors = new HashSet<people>();
             this.stars = new HashSet<people>();
+            this.user = new HashSet<user>();
         }
     
         public int id { get; set; }
@@ -30,5 +31,7 @@ namespace SEP6Film
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<people> stars { get; set; }
         public virtual ratings ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> user { get; set; }
     }
 }

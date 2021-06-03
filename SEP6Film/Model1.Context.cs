@@ -28,5 +28,6 @@ namespace SEP6Film
         public virtual DbSet<movies> movies { get; set; }
         public virtual DbSet<people> people { get; set; }
         public virtual DbSet<ratings> ratings { get; set; }
+        public virtual DbSet<user> user { get; set; }
     }
 }

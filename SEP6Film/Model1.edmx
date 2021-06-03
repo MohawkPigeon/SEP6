@@ -13,6 +13,14 @@
           <Property Name="movie_id" Type="int" Nullable="false" />
           <Property Name="person_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="movie">
+          <Key>
+            <PropertyRef Name="movie_id" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="movie_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="movies">
           <Key>
             <PropertyRef Name="id" />
@@ -45,12 +53,102 @@
           <Property Name="movie_id" Type="int" Nullable="false" />
           <Property Name="person_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar(max)" Nullable="false" />
+          <Property Name="password" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_directors_ToMovies">
+          <End Role="movies" Type="Self.movies" Multiplicity="1" />
+          <End Role="directors" Type="Self.directors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="directors">
+              <PropertyRef Name="movie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_directors_ToPeople">
+          <End Role="people" Type="Self.people" Multiplicity="1" />
+          <End Role="directors" Type="Self.directors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="people">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="directors">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ratings_ToMovies">
+          <End Role="movies" Type="Self.movies" Multiplicity="1" />
+          <End Role="ratings" Type="Self.ratings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ratings">
+              <PropertyRef Name="movie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stars_ToMovies">
+          <End Role="movies" Type="Self.movies" Multiplicity="1" />
+          <End Role="stars" Type="Self.stars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stars">
+              <PropertyRef Name="movie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stars_ToPeople">
+          <End Role="people" Type="Self.people" Multiplicity="1" />
+          <End Role="stars" Type="Self.stars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="people">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stars">
+              <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="sep6_3ModelStoreContainer">
           <EntitySet Name="directors" EntityType="Self.directors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="movie" EntityType="Self.movie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="movies" EntityType="Self.movies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ratings" EntityType="Self.ratings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stars" EntityType="Self.stars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_directors_ToMovies" Association="Self.FK_directors_ToMovies">
+            <End Role="movies" EntitySet="movies" />
+            <End Role="directors" EntitySet="directors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_directors_ToPeople" Association="Self.FK_directors_ToPeople">
+            <End Role="people" EntitySet="people" />
+            <End Role="directors" EntitySet="directors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ratings_ToMovies" Association="Self.FK_ratings_ToMovies">
+            <End Role="movies" EntitySet="movies" />
+            <End Role="ratings" EntitySet="ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stars_ToMovies" Association="Self.FK_stars_ToMovies">
+            <End Role="movies" EntitySet="movies" />
+            <End Role="stars" EntitySet="stars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stars_ToPeople" Association="Self.FK_stars_ToPeople">
+            <End Role="people" EntitySet="people" />
+            <End Role="stars" EntitySet="stars" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -66,6 +164,7 @@
           <NavigationProperty Name="directors" Relationship="sep6_3Model.peoplemovies" FromRole="movies" ToRole="people" />
           <NavigationProperty Name="stars" Relationship="sep6_3Model.peoplemovies1" FromRole="movies" ToRole="people" />
           <NavigationProperty Name="ratings" Relationship="sep6_3Model.ratingsmovies" FromRole="movies" ToRole="ratings" />
+          <NavigationProperty Name="user" Relationship="sep6_3Model.usermovies" FromRole="movies" ToRole="user" />
         </EntityType>
         <EntityType Name="people">
           <Key>
@@ -102,6 +201,11 @@
             <End Role="ratings" EntitySet="ratings" />
             <End Role="movies" EntitySet="movies" />
           </AssociationSet>
+          <EntitySet Name="user" EntityType="sep6_3Model.user" />
+          <AssociationSet Name="usermovies" Association="sep6_3Model.usermovies">
+            <End Role="user" EntitySet="user" />
+            <End Role="movies" EntitySet="movies" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="peoplemovies">
           <End Type="sep6_3Model.people" Role="people" Multiplicity="*" />
@@ -112,7 +216,7 @@
           <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
         </Association>
         <Association Name="ratingsmovies">
-          <End Type="sep6_3Model.ratings" Role="ratings" Multiplicity="1" />
+          <End Type="sep6_3Model.ratings" Role="ratings" Multiplicity="0..1" />
           <End Type="sep6_3Model.movies" Role="movies" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="movies">
@@ -122,6 +226,19 @@
               <PropertyRef Name="movie_id" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="movies" Relationship="sep6_3Model.usermovies" FromRole="user" ToRole="movies" />
+        </EntityType>
+        <Association Name="usermovies">
+          <End Type="sep6_3Model.user" Role="user" Multiplicity="*" />
+          <End Type="sep6_3Model.movies" Role="movies" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -170,6 +287,23 @@
             </EndProperty>
             <EndProperty Name="people">
               <ScalarProperty Name="id" ColumnName="person_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="sep6_3Model.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="usermovies" TypeName="sep6_3Model.usermovies" StoreEntitySet="movie" >
+            <EndProperty Name="movies">
+              <ScalarProperty Name="id" ColumnName="movie_id" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="id" ColumnName="user_id" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

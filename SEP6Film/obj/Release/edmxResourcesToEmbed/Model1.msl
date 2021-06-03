@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sep6_3ModelStoreContainer" CdmEntityContainer="sep6_3Entities">
+    <EntitySetMapping Name="movies">
+      <EntityTypeMapping TypeName="sep6_3Model.movies">
+        <MappingFragment StoreEntitySet="movies">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="people">
+      <EntityTypeMapping TypeName="sep6_3Model.people">
+        <MappingFragment StoreEntitySet="people">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="birth" ColumnName="birth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ratings">
+      <EntityTypeMapping TypeName="sep6_3Model.ratings">
+        <MappingFragment StoreEntitySet="ratings">
+          <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="votes" ColumnName="votes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="peoplemovies" TypeName="sep6_3Model.peoplemovies" StoreEntitySet="directors">
+      <EndProperty Name="movies">
+        <ScalarProperty Name="id" ColumnName="movie_id" />
+      </EndProperty>
+      <EndProperty Name="people">
+        <ScalarProperty Name="id" ColumnName="person_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="peoplemovies1" TypeName="sep6_3Model.peoplemovies1" StoreEntitySet="stars">
+      <EndProperty Name="movies">
+        <ScalarProperty Name="id" ColumnName="movie_id" />
+      </EndProperty>
+      <EndProperty Name="people">
+        <ScalarProperty Name="id" ColumnName="person_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

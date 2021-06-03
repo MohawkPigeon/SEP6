@@ -3,16 +3,16 @@
     "secrets1": {
       "type": "secrets.user"
     },
-    "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/film-gruppe/databases/SEP6_2",
-      "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:SEP6",
-      "secretStore": "LocalSecretsFile"
-    },
     "mssql2": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/film-gruppe/databases/sep6_3",
       "type": "mssql.azure",
       "connectionId": "sep6_3connection",
+      "secretStore": "LocalSecretsFile"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/film-gruppe/databases/sep6_3",
+      "type": "mssql.azure",
+      "connectionId": "connection2",
       "secretStore": "LocalSecretsFile"
     }
   }
