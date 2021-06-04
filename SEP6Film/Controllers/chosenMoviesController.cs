@@ -16,10 +16,6 @@ namespace SEP6Film.Controllers
     {
         private sep6_3Entities db2 = new sep6_3Entities();
 
-
-        // POST: chosenMovies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpGet]
         public async Task<ActionResult> Create(int ?id)
         {
