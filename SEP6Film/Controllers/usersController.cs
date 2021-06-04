@@ -35,7 +35,7 @@ namespace SEP6Film.Controllers
                 }
         }
 
-
+         
         // GET: users/Details/5
         public async Task<ActionResult> Details(int? id)
         {
